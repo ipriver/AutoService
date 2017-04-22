@@ -1,0 +1,13 @@
+{% if latest_news_list %}
+    <ul>
+    {% for news in latest_news_list %}
+        <li>
+          <h2>{{ news.title }}</h2>
+          <p> {{ news.article_descr }}</p>
+          <p>{{ news.date }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No news</p>
+{% endif %}
