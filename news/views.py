@@ -19,7 +19,8 @@ def tr(request, id_key=5, p2_key=4):
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
     context_object_name = 'latest_news_list'
-sws
+
     def get_queryset(self):
         """Return the last five published questions."""
         return Article.objects.order_by('-date')[:5]
+
