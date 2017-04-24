@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from news.models import Article
+from news.models import Article, PriceList
 
 
 def test(request):
@@ -41,7 +41,8 @@ class AboutView(generic.ListView):
 
 class PriceListView(generic.ListView):
     template_name = 'news/pricelist.html'
-    
+    context_object_name = 'price_list'
+
     def get_queryset(self):
-        pass
+        return PriceList.objects.order_by('price')
 
