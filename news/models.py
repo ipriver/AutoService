@@ -6,3 +6,7 @@ class Article(models.Model):
     article_descr = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now=True)
   
+
+class PriceList(models.Model):
+    transp_type = models.CharField(max_length=50)
+    price = models.IntegerField(default=0)

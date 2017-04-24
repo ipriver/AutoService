@@ -43,15 +43,15 @@ table {
 
 @font-face {
   font-family: segoe-ui-semibold;
-  src: url(../fonts/segoe-ui-semibold.ttf); }
+  src: url((../fonts1/segoe-ui-semibold.ttf); }
 
 @font-face {
   font-family: segoe-ui-bold;
-  src: url(../fonts/segoe-ui-bold.ttf); }
+  src: url((..fonts1/segoe-ui-bold.ttf); }
 
 @font-face {
   font-family: segoe-ui;
-  src: url(../fonts/segoe-ui.ttf); }
+  src: url((../fonts1/segoe-ui.ttf); }
 
 .navigation {
   display: -ms-flexbox;

@@ -1,0 +1,23 @@
+.article {
+	margin: 20px 0;
+	padding: 10px;
+	min-height: 100px;
+	border: 1px solid grey;
+}
+
+.article h2 {
+	margin-bottom: 10px;
+	font-size: 1.3em;
+}
+
+.article p {
+	font-size: 1.1em;
+}
+
+.article h2 span {
+	float: right;
+}
+
+.article h2 span:after {
+	clear: both;
+}
