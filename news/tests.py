@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from .models import Article, PriceList, Comment
+from .models import Article, PriceList, About_Comment
 import datetime
 
 
@@ -52,7 +52,8 @@ class PriceListTests(TestCase):
 class CommentsTests(TestCase):
 
     def setUp(self):
-        self.comment = Comment.objects.create(author='1', comment='2')
+        self.comment = About_Comment.objects.create(author='1', comment='2',
+                                                    title='3')
 
     def test_check_creation_of_comment(self):
         """
@@ -62,3 +63,4 @@ class CommentsTests(TestCase):
                          datetime.datetime.now().date())
         self.assertIs(self.comment.author, '1')
         self.assertIs(self.comment.comment, '2')
+        self.assertIs(self.comment.title, '3')

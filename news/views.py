@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from news.models import Article, PriceList
+from news.models import Article, PriceList, About_Comment
 
 
 def test(request):
@@ -21,7 +21,6 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_news_list'
 
     def get_queryset(self):
-        """Return the last five published questions."""
         return Article.objects.order_by('-date')[:5]
 
 
@@ -31,12 +30,12 @@ class ContactsView(generic.ListView):
     def get_queryset(self):
         pass
 
-
 class AboutView(generic.ListView):
     template_name = 'news/about.html'
-    
+    context_object_name = 'comments_list'
+
     def get_queryset(self):
-        pass
+        return About_Comment.objects.order_by('-date')[:5]
 
 
 class PriceListView(generic.ListView):
@@ -45,4 +44,5 @@ class PriceListView(generic.ListView):
 
     def get_queryset(self):
         return PriceList.objects.order_by('price')
+
 

@@ -12,7 +12,8 @@ class PriceList(models.Model):
     price = models.IntegerField(default=0)
 
 
-class Comment(models.Model):
+class About_Comment(models.Model):
     date = models.DateTimeField(auto_now=True)
     author = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
     comment = models.CharField(max_length=250)
