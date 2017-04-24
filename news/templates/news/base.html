@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>uvezy.by</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'news/styles/style.css' %}">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="{% url 'news:index'%}">
+        <img src="{% static 'news/images/logo.png' %}" alt="logo">
+      </a>
+    </div>
+    <nav class="navigation">
+      <a href="{% url 'news:index'%}">Главная</a>
+      <a href="{% url 'news:contacts'%}">Контакты</a>
+      <a href="{% url 'news:about'%}">О нас</a>
+      <a href="{% url 'news:pricelist'%}">Стоимость</a>
+    </nav>
+    <div class="phone">
+        <h2>Курглосуточно</h2>
+        <p>+ 375 (29) <span>128-88-88</span></p>
+        <p>+ 375 (44) <span>588-88-89</span></p>
+    </div>
+  </header>
+  <main>
+    {% block slider %}
+    {% endblock %}
+    <div class="content">
+     <section>
+      {% block content %}
+      {% endblock %}
+     </section>
+      <aside>
+        <ul>
+          <li>
+            <img src="{% static 'news/images/aside-icon1.png' %}" alt="aside-icon1" width=48 height=48>
+            <p><span>24/7</span> – у нас можно вызвать эвакуатор круглосуточно, днем и ночью, в будни и праздники</p>
+          </li>
+          <li>
+            <img src="{% static 'news/images/aside-icon2.png' %}" alt="aside-icon2" width=62 height=62>
+            <p><span>профессионализм</span> – за 15 лет работы на столичном рынке мы приобрели бесценный практический опыт
+                и собрали команду  специалистов, что позволяет нашей службе выполнять любые, даже самые сложные
+                и нестандартные заказы</p>
+          </li>
+          <li>
+            <img src="{% static 'news/images/aside-icon3.png' %}" alt="aside-icon3" width=49 height=68>
+            <p><span>оперативность</span> – наша техника постоянно дежурит в Минске на крупнейших транспортных развязках,
+                поэтому ближайший свободный эвакуатор прибывает на вызов всего за несколько десятков минут</p>
+          </li>
+          <li>
+            <img src="{% static 'news/images/aside-icon4.png' %}" alt="aside-icon4" width=58 height=58>
+            <p><span>разумные цены</span> – контроль оптимальной загрузки техники и взвешенная ценовая политика
+                обеспечивают оптимальные, одни из самых доступных по Минске тарифы</p>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+  <footer>
+   <div class="space"></div>
+    <nav class="navigation">
+      <a href="{% url 'news:index'%}">Главная</a>
+      <a href="{% url 'news:contacts'%}">Контакты</a>
+      <a href="{% url 'news:about'%}">О нас</a>
+      <a href="{% url 'news:pricelist'%}">Стоимость</a>
+    </nav>
+    <div class="phone">
+        <h2>Курглосуточно</h2>
+        <p>+ 375 (29) <span>128-88-88</span></p>
+        <p>+ 375 (44) <span>588-88-89</span></p>
+    </div>
+  </footer>
+</body>
+</html>
+

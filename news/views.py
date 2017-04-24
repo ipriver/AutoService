@@ -24,3 +24,24 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Article.objects.order_by('-date')[:5]
 
+
+class ContactsView(generic.ListView):
+    template_name = 'news/contacts.html'
+    
+    def get_queryset(self):
+        pass
+
+
+class AboutView(generic.ListView):
+    template_name = 'news/about.html'
+    
+    def get_queryset(self):
+        pass
+
+
+class PriceListView(generic.ListView):
+    template_name = 'news/pricelist.html'
+    
+    def get_queryset(self):
+        pass
+
