@@ -1,4 +1,6 @@
-
+.Slides {
+	display: none;
+}
 .article {
 	margin: 20px 0;
 	padding: 10px;

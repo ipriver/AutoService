@@ -3,23 +3,45 @@
 
 {% block headerdata %}
   <link rel="stylesheet" type="text/css" href="{% static 'news/styles/article.css' %}">
+
 {% endblock %}
 
 {% block slider %}
   <div class="slider">
-    <img src="{% static 'news/images/slider-1.png' %}" alt="slide-1">
-    <!-- TODO: slider
-      <img src="images/slider-2.png" alt="slide-2">
-      <img src="images/slider-3.png" alt="slide-3">
-    -->
+    <img class="Slides" src="{% static 'news/images/slider-1.png' %}" alt="slide-1">
+    <img class="Slides" src="{% static 'news/images/slider-2.png' %}" alt="slide-2">
+    <img class="Slides" src="{% static 'news/images/slider-3.png' %}" alt="slide-3">
+    
     <div class="sl-buttons">
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li class="Active" onclick="showDivs(1)"></li>
+        <li class="Active" onclick="showDivs(2)"></li>
+        <li class="Active" onclick="showDivs(3)"></li>
       </ul>
     </div>
   </div>
+  <script>
+    var x = document.getElementsByClassName("Slides");
+    x[0].style.display = "block";
+    var sd = 1;
+    function next() {
+      sd+=1;
+      if (sd > 3) sd = 1;
+      showDivs(sd);
+    }
+    function showDivs(n) {
+      sd = n;
+      var x = document.getElementsByClassName("Slides");
+      clearInterval(Timer)
+      for(var i=0; i<x.length; i++) {
+        x[i].style.display = "none";
+      }
+      x[n-1].style.display = "block";
+      Timer = setInterval(next, 5000);
+    }
+    
+    var Timer = setInterval(next, 5000);  
+  </script>
 {% endblock %}
 
 {% block content %}
