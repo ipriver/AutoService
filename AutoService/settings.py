@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '3-&opp3(s2*7l0d9f1c@r1dhb)%*k^2y!fg)vtn$l2qp*x(^u7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['ipriver.ru', 'localhost', 'testserver']
 

@@ -1,19 +1,19 @@
 from django.shortcuts import render
 from django.views import generic
-
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from news.models import Article, PriceList, About_Comment
 
-
-def test(request):
-    latest_news_list = Article.objects.order_by('-date')[:5]
-    context = {
-        'latest_news_list': latest_news_list,
-    }
-    return render(request, 'news/index.html', context)
+from .forms import CommentForm
 
 
-def tr(request, id_key=5, p2_key=4):
-    return HttpResponse('<p>'+id_key+'</p>'+'<p>'+p2_key+'</p>')
+def get_comment(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/about/')
+    else:
+        form = CommentForm()
+    return render(request, 'about.html', {'form': form})
 
 
 class IndexView(generic.ListView):
@@ -26,16 +26,61 @@ class IndexView(generic.ListView):
 
 class ContactsView(generic.ListView):
     template_name = 'news/contacts.html'
-    
+
     def get_queryset(self):
         pass
 
+
+def about(request, comment_page=1):
+    comment_page = int(comment_page) - 1
+    comments_per_page = 5
+    comments_list = About_Comment.objects.order_by('-date')[
+        comment_page * comments_per_page:comments_per_page +
+        comment_page * comments_per_page]
+    pages_count = len(About_Comment.objects.all()) / comments_per_page
+    import math
+    pages_count = math.ceil(pages_count)
+    if comment_page + 1 > pages_count:
+        raise Http404("Неверное значение страницы комментариев")
+    form = CommentForm(request.POST)
+    context = {
+        'comments_list': comments_list,
+        'form': form,
+        'pages_count': [x for x in range(1, pages_count+1)]
+    }
+    return render(request, 'news/about.html', context)
+
+
+def get_comment(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            obj = About_Comment()
+            obj.author = form.cleaned_data['author']
+            obj.title = form.cleaned_data['title']
+            obj.comment = form.cleaned_data['comment']
+            obj.save()
+            
+    return HttpResponseRedirect('/about/')
+"""
 class AboutView(generic.ListView):
     template_name = 'news/about.html'
     context_object_name = 'comments_list'
 
     def get_queryset(self):
-        return About_Comment.objects.order_by('-date')[:5]
+        return About_Comment.objects.order_by('-date')[0:5]
+
+
+
+    def get_comment(request):
+        if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                return HttpResponseRedirect('/about/')
+        else:
+            form = CommentForm()
+        return render(request, 'about.html', {'form': form})
+"""
 
 
 class PriceListView(generic.ListView):
