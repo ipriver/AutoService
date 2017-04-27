@@ -21,7 +21,7 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_news_list'
 
     def get_queryset(self):
-        return Article.objects.order_by('-date')[:5]
+        return Article.objects.order_by('-date')[:6]
 
 
 class ContactsView(generic.ListView):
