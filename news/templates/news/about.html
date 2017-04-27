@@ -1,4 +1,10 @@
 {% extends 'news/base.html' %}
+{% load staticfiles %}
+
+{% block headerdata %}
+  <link rel="stylesheet" type="text/css" href="{% static 'news/styles/about.css' %}">
+
+{% endblock %}
 {% block content %}
   <div class="about">
     <p>Компания "БелАвтоСпас" – уже не первый год находится на рынке профессиональной помощи автомобилистам. Наша основная миссия – не дать вашему мотору устать и придти на помощь при первом вызове!</p>
@@ -6,29 +12,31 @@
     <p>Мы оказываем широкий перечень услуг, касающихся помощи автовладельцам в экстренных, а также и в рядовых ситуациях. 
     Основное направление деятельности  ООО "БелАвтоСпас" – квалифицированная автопомощь, которая отнюдь не заканчивается эвакуацией поврежденных или нерабочих автомобилей по гаражам и стоянкам. Наши специалисты не просто отвозят машины, а помогают их владельцам вдохнуть в «железных друзей» второе дыхание!</p>
   </div>
-  <h2> Отзывы о нас </h2>
-  {% if comments_list %}
-    <ul>
-      {% for comment in comments_list %}
-        <li>
-          <h2 class="title">{{comment.title }}</h2>
-          <p class="author">{{comment.author }}</p>
-          <p class="date">{{comment.date }}</p>
-          <p class="comment">{{comment.comment }}</p>
-        </li>
-      {% endfor %}
-      <div class="comment_pages">
-        {% for i in pages_count %}
-          <a href="/about/{{ i }}">{{ i }} </a>
+  <div class="otziv-form">
+    <h2 class="otzivi-title"> Отзывы о нас: </h2>
+    {% if comments_list %}
+      <ul>
+        {% for comment in comments_list %}
+          <li class="otziv">
+            <h2 class="title">{{comment.title }}</h2>
+            <p class="date">{{comment.date }}</p>
+            <p class="author">{{comment.author }}</p>
+            <p class="comment">{{comment.comment }}</p>
+          </li>
         {% endfor %}
-      </div>
-    </ul>  
-  {% else %}
-    <p> Нету отзывов </p>
-  {% endif %}
-  <form action="/add_comment/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Отправить">
-  </form>  
+        <div class="comment_pages">
+          {% for i in pages_count %}
+            <a href="/about/{{ i }}">{{ i }} </a>
+          {% endfor %}
+        </div>
+      </ul>  
+    {% else %}
+      <p> Нету отзывов </p>
+    {% endif %}
+    <form class="commentform" action="/add_comment/" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Отправить">
+    </form>
+  </div>  
 {% endblock %}

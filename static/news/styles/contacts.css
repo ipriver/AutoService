@@ -1,0 +1,32 @@
+@font-face {
+  font-family: segoe-ui;
+  src: url((../fonts/segoe-ui.ttf); }
+
+.map {
+	float: right;
+}
+
+.contacts {
+	float: left;
+	font-size: 1.2em;
+	color: #e18711;
+}
+.contacts p {
+	margin-bottom: 10px;
+}
+
+.contacts span{
+	color: #858585;
+}
+
+.block {
+	margin-top: 30px;
+	margin-right: 40px;
+	margin-left: 40px;
+	font-family: segoe-ui, Arial, sans-serif;
+}
+
+.block h2 {
+	font-size: 1.2em;
+	margin-bottom: 20px;
+}
